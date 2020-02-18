@@ -7,7 +7,7 @@
 
 module.exports = {
   someSidebar: {
-    Docusaurus: ['artifact', 'doc1', 'doc2', 'doc3'],
+    Docusaurus: ['pldi-2020-artifact', 'doc1', 'doc2', 'doc3'],
     Features: ['mdx'],
   },
 };
