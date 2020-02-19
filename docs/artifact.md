@@ -72,16 +72,15 @@ We re-filter for the applicable tests and run them using JS-2-GIL and the concre
 
 The following eight tests
 
-```
-test262/test/language/line-terminators/7.3-6.js
-test262/test/language/line-terminators/7.3-5.js
-test262/test/language/line-terminators/7.3-15.js
-test262/test/language/line-terminators/invalid-string-cr.js
-test262/test/language/source-text/6.1.js
-test262/test/built-ins/Number/S9.3.1_A3_T1.js
-test262/test/built-ins/Number/S9.3.1_A3_T2.js
-test262/test/built-ins/Number/S9.3.1_A2.js
-```
+- `test262/test/language/line-terminators/7.3-6.js`
+- `test262/test/language/line-terminators/7.3-5.js`
+- `test262/test/language/line-terminators/7.3-15.js`
+- `test262/test/language/line-terminators/invalid-string-cr.js`
+- `test262/test/language/source-text/6.1.js`
+- `test262/test/built-ins/Number/S9.3.1_A3_T1.js`
+- `test262/test/built-ins/Number/S9.3.1_A3_T2.js`
+- `test262/test/built-ins/Number/S9.3.1_A2.js`
+
 
 all fail due to a discrepancy between how Unicode characters are treated in JavaScript (either UCS-2 or UTF-16) and OCaml (sequences of bytes). One solution would be to move to strings provided by the [`Camomile`](http://camomile.sourceforge.net/) library instead of the native OCaml strings.
 
@@ -89,18 +88,21 @@ all fail due to a discrepancy between how Unicode characters are treated in Java
 
 1. Clone our [forked Test262 repository](https://github.com/giltho/javert-test262) to a folder on your machine. Inside that folder, the tests can be found in the `test` subfolder. In particular, `test/language` contains the core language tests, whereas `test/built-ins` contains the tests for the built-in libraries.
 2. To run all of the tests, execute the following command inside your Gillian folder:
-```
+```bash
 esy x javert bulk-exec [relative path to your Test262 folder]/test
 ```
-For example, we normally clone Test262 to at the same level as Gillian and do not change the folder name. Therefore, we run all of the tests by executing
-```
+For example, we normally clone Test262 to at the same level as Gillian and change the folder name from `javert-test262` to `test262`. Therefore, we run all of the tests by executing the following starting from the `Gillian` folder :
+```bash
+cd ..
+git clone https://github.com/giltho/javert-test262.git test262
+cd Gillian
 esy x javert bulk-exec ../test262/test
 ```
 
 The testing should take approximately thirty minutes. The bulk tester will actively report progress, folder-by-folder, and signal any test failures encountered. In the end, a list of all failed tests (the eight given above) will be printed.
 
-3. If you would like to test a specific subfolder of the test suite, simply add it to the test path. For example, to run only the tests for `Array.prototype.reduce`, execute
-```
+1. If you would like to test a specific subfolder of the test suite, simply add it to the test path. For example, to run only the tests for `Array.prototype.reduce`, execute
+```bash
 esy x javert bulk-exec ../test262/test/built-ins/Array/prototype/reduce/
 ```
 4. If you would like to examine the filtered tests, you can find them, as described above, listed in the [`Test262_filtering.ml`](https://github.com/giltho/GillianDev/blob/master/JaVerT/lib/Test262/Test262_filtering.ml) file.
