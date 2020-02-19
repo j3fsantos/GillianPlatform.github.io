@@ -3,7 +3,7 @@ id: pldi-2020-artifact
 title: PLDI 2020 Artifact
 ---
 
-# Gillian: Parametric Symbolic Execution for All
+# Gillian, Part I: Parametric Symbolic Execution for All
 
 ## Gillian-JS (JaVerT)
 
@@ -60,10 +60,10 @@ We re-filter for the applicable tests and run them using JS-2-GIL and the concre
 - **Total tests**: all tests.
 - **Non-strict tests** (filtered out): tests that should be run only in non-strict mode. They contain the `flags: [noStrict]` directive and are filtered out automatically by our bulk testing mechanism.
 - **Strict tests**: tests that should be run in strict mode.
-- **Non-strict features** (filtered out): tests that combine strict and non-strict mode, using either indirect eval or the non-strict `Function` constructor (91 tests, list available in the `non_strict_tests` variable of [`Test262_filtering.ml`](???)).
-- **For unimplemented features** (filtered out): tests that test unimplemented features, such as the`JSON` library (1205 tests, list available in the `tests_for_unimplemented_features` variable of [`Test262_filtering.ml`](???)). Note that the structural tests for some of these features still pass, as we have the appropriate stubs in the initial heap.
-- **Using unimplemented features** (filtered out): tests that use unimplemented features to test behaviours of implemented features, with the most prominent examples being the `Date` constructor and `RegExp` literals (29 tests, list available in the `tests_using_unimplemented_features` variable of [`Test262_filtering.ml`](???)).
-- **ES6+** (filtered out): tests that use behaviours beyond ES5 (5 tests, list available in the `es6_tests` variable of [`Test262_filtering.ml`](???)). For example, two language tests test for the ES6 completion of the `if` statement (returns `undefined` instead of the ES5 `empty`), one language test uses a function declaration in statement position (disallowed in ES5), and two built-in tests require a specific ordering of object keys (implementation-dependent in ES5).
+- **Non-strict features** (filtered out): tests that combine strict and non-strict mode, using either indirect eval or the non-strict `Function` constructor (91 tests, list available in the `non_strict_tests` variable of [`Test262_filtering.ml`](https://github.com/giltho/GillianDev/blob/master/JaVerT/lib/Test262/Test262_filtering.ml)).
+- **For unimplemented features** (filtered out): tests that test unimplemented features, such as the`JSON` library (1205 tests, list available in the `tests_for_unimplemented_features` variable of [`Test262_filtering.ml`](https://github.com/giltho/GillianDev/blob/master/JaVerT/lib/Test262/Test262_filtering.ml)). Note that the structural tests for some of these features still pass, as we have the appropriate stubs in the initial heap.
+- **Using unimplemented features** (filtered out): tests that use unimplemented features to test behaviours of implemented features, with the most prominent examples being the `Date` constructor and `RegExp` literals (29 tests, list available in the `tests_using_unimplemented_features` variable of [`Test262_filtering.ml`](https://github.com/giltho/GillianDev/blob/master/JaVerT/lib/Test262/Test262_filtering.ml)).
+- **ES6+** (filtered out): tests that use behaviours beyond ES5 (5 tests, list available in the `es6_tests` variable of [`Test262_filtering.ml`](https://github.com/giltho/GillianDev/blob/master/JaVerT/lib/Test262/Test262_filtering.ml)). For example, two language tests test for the ES6 completion of the `if` statement (returns `undefined` instead of the ES5 `empty`), one language test uses a function declaration in statement position (disallowed in ES5), and two built-in tests require a specific ordering of object keys (implementation-dependent in ES5).
 - **Applicable**: the number of tests applicable to JS-2-GIL.
 - **Passing**: the number of tests passing.
 - **Failing**: the number of tests failing.
@@ -84,6 +84,26 @@ test262/test/built-ins/Number/S9.3.1_A2.js
 ```
 
 all fail due to a discrepancy between how Unicode characters are treated in JavaScript (either UCS-2 or UTF-16) and OCaml (sequences of bytes). One solution would be to move to strings provided by the [`Camomile`](http://camomile.sourceforge.net/) library instead of the native OCaml strings.
+
+#### Reproducing the Testing Results
+
+1. Clone our [forked Test262 repository](https://github.com/giltho/javert-test262) to a folder on your machine. Inside that folder, the tests can be found in the `test` subfolder. In particular, `test/language` contains the core language tests, whereas `test/built-ins` contains the tests for the built-in libraries.
+2. To run all of the tests, execute the following command inside your Gillian folder:
+```
+esy x javert bulk-exec [relative path to your Test262 folder]/test
+```
+For example, we normally clone Test262 to at the same level as Gillian and do not change the folder name. Therefore, we run all of the tests by executing
+```
+esy x javert bulk-exec ../test262/test
+```
+
+The testing should take approximately thirty minutes. The bulk tester will actively report progress, folder-by-folder, and signal any test failures encountered. In the end, a list of all failed tests (the eight given above) will be printed.
+
+3. If you would like to test a specific subfolder of the test suite, simply add it to the test path. For example, to run only the tests for `Array.prototype.reduce`, execute
+```
+esy x javert bulk-exec ../test262/test/built-ins/Array/prototype/reduce/
+```
+4. If you would like to examine the filtered tests, you can find them, as described above, listed in the [`Test262_filtering.ml`](https://github.com/giltho/GillianDev/blob/master/JaVerT/lib/Test262/Test262_filtering.ml) file.
 
 #### Detailed Per-Folder Breakdown: Language
 
