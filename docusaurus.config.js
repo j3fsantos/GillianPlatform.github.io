@@ -15,7 +15,7 @@ module.exports = {
       },
       links: [
         {to: 'docs/pldi-2020-artifact', label: 'Docs', position: 'left'},
-        {to: 'blog', label: 'Blog', position: 'left'},
+        // {to: 'blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/giltho/GillianDev',
           label: 'GitHub',

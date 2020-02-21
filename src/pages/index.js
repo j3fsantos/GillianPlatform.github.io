@@ -9,17 +9,17 @@ import styles from './styles.module.css';
 const features = [
   {
     title: <>GIL: A parametrised intermediate language</>,
-    imageUrl: 'img/undraw_docusaurus_mountain.svg',
+    imageUrl: 'img/undraw_fitting_piece.svg',
     description: (
       <>
         Gillian uses an intermediate language for verification called GIL.
-        It is parametric on `actions` of which the semantics is not predifined by the framework.
+        It is parametric on <code>actions</code> of which the semantics is not predifined by the framework.
       </>
     ),
   },
   {
     title: <>Focus on What Matters</>,
-    imageUrl: 'img/undraw_docusaurus_tree.svg',
+    imageUrl: 'img/undraw_annotation.svg',
     description: (
       <>
         We've worked hard on making Gillian as easy to use as possible.
@@ -29,12 +29,13 @@ const features = [
     ),
   },
   {
-    title: <>Powered by React</>,
-    imageUrl: 'img/undraw_docusaurus_react.svg',
+    title: <>Fully parametric meta-theoretical results</>,
+    imageUrl: 'img/undraw_proof.svg',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Gillian comes with fully parametric meta-theoretical results.
+        We try to alleviate your work as much as possible: only prove what you implement,
+        nothing more.
       </>
     ),
   },
