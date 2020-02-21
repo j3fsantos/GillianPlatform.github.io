@@ -22,3 +22,10 @@
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
 }
+
+.logo_title {
+  background-color: var(--ifm-background-surface-color);
+  border-radius: 0.5em;
+  height: 1.3em;
+  max-width: fit-content;
+}

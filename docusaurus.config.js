@@ -8,10 +8,10 @@ module.exports = {
   projectName: 'docusaurus', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'Gillian',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Gillian logo, by Valentin Magnat',
+        srcDark: 'img/logo_full_black.svg',
+        src: 'img/logo_full_white.svg'
       },
       links: [
         {to: 'docs/pldi-2020-artifact', label: 'Docs', position: 'left'},
@@ -57,7 +57,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Gillian Team. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Gillian Team. Gillian and WISL logos by Valentin Magnat. Built with Docusaurus.`,
     },
   },
   presets: [
