@@ -60,13 +60,16 @@ function Feature({imageUrl, title, description}) {
 function Home() {
   const context = useDocusaurusContext();
   const {siteConfig = {}} = context;
+  let imgUrl = 'img/logo.svg';
+  const logoUrl = useBaseUrl(imgUrl);
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`${siteConfig.title} - ${siteConfig.tagline}`}
+      description="Documentation of the Gillian Platform.">
       <header className={classnames('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">
+            <img className="logo_title text_title" src={logoUrl}/>
             Gillian
           </h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>

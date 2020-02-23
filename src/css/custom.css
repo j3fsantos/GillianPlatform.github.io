@@ -25,7 +25,13 @@
 
 .logo_title {
   background-color: var(--ifm-background-surface-color);
-  border-radius: 0.5em;
+  border-radius: 0.2em;
   height: 1.3em;
   max-width: fit-content;
+  padding:0.2em;
+  margin-right: 0.5em;
+}
+
+.text_title {
+  vertical-align: middle;
 }

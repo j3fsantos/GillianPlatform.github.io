@@ -14,7 +14,9 @@ module.exports = {
         src: 'img/logo_full_white.svg'
       },
       links: [
-        {to: 'docs/pldi-2020-artifact', label: 'Docs', position: 'left'},
+        {to: 'docs/start', label: 'Docs', position: 'left'},
+        {to: 'docs/js/intro', label: 'Gillian-JS', position: 'left'},
+        {to: 'docs/c/intro', label: 'Gillian-C', position: 'left'},
         // {to: 'blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/giltho/GillianDev',
