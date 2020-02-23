@@ -1,11 +1,11 @@
 module.exports = {
   title: 'Gillian',
   tagline: 'Compositional Symbolic Analysis for All',
-  url: 'http://GillianAnalysis.github.io',
+  url: 'https://GillianPlatform.github.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'GillianPlatform', // Usually your GitHub org/user name.
+  projectName: 'GillianPlatform.github.io', // Usually your repo name.
   themeConfig: {
     navbar: {
       logo: {
@@ -67,7 +67,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+            'https://github.com/GillianPlatform/gillianplatform.github.io',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
