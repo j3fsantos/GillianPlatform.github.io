@@ -16,6 +16,10 @@
   --ifm-code-font-size: 95%;
 }
 
+.hero__title {
+  margin-bottom: calc(var(--ifm-paragraph-margin-bottom) - 20px);
+}
+
 .docusaurus-highlight-code-line {
   background-color: rgb(72, 77, 91);
   display: block;
@@ -30,8 +34,6 @@
   max-width: fit-content;
   padding:0.2em;
   margin-right: 0.5em;
-}
-
-.text_title {
   vertical-align: middle;
+  margin-bottom: 10px;
 }

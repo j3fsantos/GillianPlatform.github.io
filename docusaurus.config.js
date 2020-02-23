@@ -53,8 +53,8 @@ module.exports = {
               href: 'https://github.com/giltho/GillianDev',
             },
             {
-              label: 'Papers',
-              href: 'papers',
+              label: 'references',
+              href: 'docs/js/references',
             },
           ],
         },
