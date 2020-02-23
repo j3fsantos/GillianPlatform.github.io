@@ -206,7 +206,7 @@ In order to obtain the number of executed commands, append the `count` parameter
 | **Time (s)**     | 0.343|	0.331	|0.331	|0.620	|1.625
 | **GIL Commands** | 52,233 | 44,958 | 55,097 | 154,161 | 306,449 |
 
-### Reproducing the Buckets.js Bugs found by [\[Cosette\]](references#cosette-symbolic-execution-for-javascript) and [\[JaVerT 2.0\]](references#javert20-compositional-symbolic-execution-for-javascript)
+### Reproducing the Buckets.js Bugs found by [\[Cosette\]](references.md#cosette-symbolic-execution-for-javascript) and [\[JaVerT 2.0\]](references.md#javert20-compositional-symbolic-execution-for-javascript)
 
 Starting from the `Gillian` folder, execute the following:
 
@@ -216,9 +216,9 @@ esy init:env
 cd Gillian-JS/environment
 ```
 
-### [\[Cosette\]](references#cosette-symbolic-execution-for-javascript) Multi-Dictionary Bug
+### [\[Cosette\]](references.md#cosette-symbolic-execution-for-javascript) Multi-Dictionary Bug
 
-In order to reproduce the multi-dictionary bug reported by [\[Cosette\]](references#cosette-symbolic-execution-for-javascript), execute:
+In order to reproduce the multi-dictionary bug reported by [\[Cosette\]](references.md#cosette-symbolic-execution-for-javascript), execute:
 ```bash
 ./testCosette.sh Examples/Cosette/Buckets/multidictionary/bug/multidictionary_bug.js
 ```
@@ -250,9 +250,9 @@ Assert(((not (x1 = x2)) and (res = true)) or ((x1 = x2) and (res = false)));
 
 The test puts two symbolic numbers, `x1` and `x2` for the same symbolic key `s` into an empty multidictionary, then removes `x1`, and then removes `x2` and registers the value returned by `remove`. Then, it asserts that that value was `true` if the two keys were different, and `false` if the two keys were the same. What the failing model says is that, when the two keys are equal, the library, in fact, throws a native JavaScript error (indicated by the argument `False` of the failed assert).
 
-### [\[JaVerT 2.0\]](references#javert20-compositional-symbolic-execution-for-javascript) Linked-List Bugs
+### [\[JaVerT 2.0\]](references.md#javert20-compositional-symbolic-execution-for-javascript) Linked-List Bugs
 
-In order to reproduce the linked-list bugs reported by [\[JaVerT 2.0\]](references#javert20-compositional-symbolic-execution-for-javascript), execute:
+In order to reproduce the linked-list bugs reported by [\[JaVerT 2.0\]](references.md#javert20-compositional-symbolic-execution-for-javascript), execute:
 ```bash
 ./testCosette.sh Examples/Cosette/Buckets/linkedlist/bug/linkedlist_bug_1.js
 ./testCosette.sh Examples/Cosette/Buckets/linkedlist/bug/linkedlist_bug_2.js

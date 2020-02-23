@@ -18,10 +18,10 @@ Additionally, indirect `eval` is not supported, as it is meant to be executed as
 
 ## Correctness of JS-2-GIL
 
-The JS-2-GIL compiler can be split into two compilers: JS-2-JSIL, which compiles JavaScript to JSIL, the intermediate representation that we have used in [[JaVerT]](references#javert-javascript-verification-toolchain)/[\[Cosette\]](references#cosette-symbolic-execution-for-javascript)/[\[JaVerT 2.0\]](references#javert20-compositional-symbolic-execution-for-javascript); and JSIL-2-GIL, the compiler from JSIL to GIL, the intermediate representation of Gillian.
+The JS-2-GIL compiler can be split into two compilers: JS-2-JSIL, which compiles JavaScript to JSIL, the intermediate representation that we have used in [[JaVerT]](references.md#javert-javascript-verification-toolchain)/[\[Cosette\]](references.md#cosette-symbolic-execution-for-javascript)/[\[JaVerT 2.0\]](references.md#javert20-compositional-symbolic-execution-for-javascript); and JSIL-2-GIL, the compiler from JSIL to GIL, the intermediate representation of Gillian.
 
 Previously, we have tested the correctness of JS-2-JSIL using [this commit (from May 30th 2016)](https://github.com/tc39/test262/commit/91d06f) of the Test262 official test suite.
-As the target version of JavaScript for this commit was already ES6, it was necessary for us to identify the subset of tests appropriate for JS-2-JSIL, as explained in detail in [\[JaVerT\]](references#javert-javascript-verification-toolchain), arriving at 8797 applicable tests, of which JS-2-JSIL passes 100%.
+As the target version of JavaScript for this commit was already ES6, it was necessary for us to identify the subset of tests appropriate for JS-2-JSIL, as explained in detail in [\[JaVerT\]](references.md#javert-javascript-verification-toolchain), arriving at 8797 applicable tests, of which JS-2-JSIL passes 100%.
 
 We have initially tested JS-2-GIL successfully on the same 8797 tests and reported this in the submitted version of the paper.
 However, these tests were not systematically categorised and we were not able to automate the testing process to our satisfaction using the bulk testing mechanism of Gillian.
