@@ -5,6 +5,11 @@
  */
 
 /* You can override the default Infima variables here. */
+@font-face {
+  font-family: "Adam";
+  src: url("/css/fonts/Adam.otf") format("opentype"),
+  }
+
 :root {
   --ifm-color-primary: #6eb7ba;
   --ifm-color-primary-dark: #67abad;
