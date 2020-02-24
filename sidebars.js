@@ -1,6 +1,7 @@
 module.exports = {
   someSidebar: {
     Gillian: ['start'],
+    Development: ['development/install'],
     Instantiations: [
       {
         type: "category",
