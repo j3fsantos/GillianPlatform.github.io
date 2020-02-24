@@ -15,6 +15,7 @@ module.exports = {
       },
       links: [
         {to: 'docs/start', label: 'Docs', position: 'left'},
+        {to: 'api/index.html', label: 'API Reference', position: 'left'},
         {to: 'docs/js/intro', label: 'Gillian-JS', position: 'left'},
         {to: 'docs/c/intro', label: 'Gillian-C', position: 'left'},
         // {to: 'blog', label: 'Blog', position: 'left'},
@@ -62,6 +63,7 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Gillian Team. Gillian and WISL logos by Valentin Magnat. Built with Docusaurus.`,
     },
   },
+  themes: ['@docusaurus/theme-live-codeblock'],
   presets: [
     [
       '@docusaurus/preset-classic',
