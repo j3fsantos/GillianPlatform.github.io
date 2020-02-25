@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Code } from './code';
+import Code from './code';
 import Output from './output';
 import Layout from '@theme/Layout';
 import styles from './styles.module.css';

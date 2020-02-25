@@ -9,7 +9,7 @@ const Load = () => <div>
 
 const ShowOutput = ({ loading, error, ret }) => {
   if (loading) {
-    return <Load/>
+    return <Load />
   } else if (error) {
     return <p>An unkown error occured</p>
   } else {
@@ -17,9 +17,9 @@ const ShowOutput = ({ loading, error, ret }) => {
       {
         (() => {
           if (ret.error) {
-            return <div className={styles.error}>ANALYSIS WAS NOT SUCCESSFULL</div>
+            return <div className={styles.error}>ANALYSIS WAS NOT SUCCESSFUL</div>
           } else {
-            return <div className={styles.success}>ANALYSIS WAS SUCCESSFULL</div>
+            return <div className={styles.success}>ANALYSIS WAS SUCCESSFUL</div>
           }
         })()
       }
@@ -33,51 +33,22 @@ const ShowOutput = ({ loading, error, ret }) => {
   }
 }
 
-export default function ({ code }) {
+export default ({ code }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [ret, setRet] = useState(null);
 
-  function reloading() {
-    setLoading(true);
-    setError(false);
-    setRet(null);
-  }
 
-  const headers = new Headers();
-  headers.append("Content-Type", "text/plain");
-  headers.append("Content-Length", code.length.toString());
+  if (window.fetch && typeof Headers !== undefined) {
 
-  useEffect(() => {
-    async function fetchData() {
-      reloading();
-      try {
-        const resp = await fetch("https://cosette.giltho.com/", {
-          mode : 'cors',
-          method: "POST",
-          body: code,
-          headers,
-        });
-        if (resp.status != 200) {
-          setError(true);
-          setLoading(false);
-        } else {
-          const ret = await resp.json();
-          setRet(ret);
-          setLoading(false);
-        }
-      } catch {
-        setLoading(false);
-        setError(true);
-      }
-    }
-    fetchData();
-  }, [code]);
+    useEffect(() => {
+      window.fetchCosette(code, (x) => setLoading(x), (x) => setError(x), (x) => setRet(x));
+    }, [code]);
 
-  if (window.fetch) {
-    return <ShowOutput loading={loading} ret={ret} error={error}/>
+
+    return <ShowOutput loading={loading} ret={ret} error={error} />
   } else {
     return <p>Your web browser is not compatible with this feature.</p>
   }
-  
+
 }

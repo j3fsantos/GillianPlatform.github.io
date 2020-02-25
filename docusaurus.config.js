@@ -6,6 +6,9 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'GillianPlatform', // Usually your GitHub org/user name.
   projectName: 'GillianPlatform.github.io', // Usually your repo name.
+  scripts: [
+    '/scripts/fetchCosette.js'
+  ],
   themeConfig: {
     navbar: {
       logo: {
