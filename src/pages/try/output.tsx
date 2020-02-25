@@ -39,7 +39,7 @@ export default ({ code }) => {
   const [ret, setRet] = useState(null);
 
 
-  if (window.fetch && typeof Headers !== undefined) {
+  if (typeof window !== 'undefined' && window.fetch && typeof Headers !== undefined) {
 
     useEffect(() => {
       window.fetchCosette(code, (x) => setLoading(x), (x) => setError(x), (x) => setRet(x));
