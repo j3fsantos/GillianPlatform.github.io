@@ -18,6 +18,7 @@ module.exports = {
         {to: 'api/index.html', label: 'API Reference', position: 'left'},
         {to: 'docs/js/intro', label: 'Gillian-JS', position: 'left'},
         {to: 'docs/c/intro', label: 'Gillian-C', position: 'left'},
+        {to: 'try', label: 'Try', position: 'right'},
         // {to: 'blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/giltho/GillianDev',
