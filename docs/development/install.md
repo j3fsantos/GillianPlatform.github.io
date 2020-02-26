@@ -30,7 +30,7 @@ If the installation does not work on your machine, or if you are running Windows
 
 ### Sandboxing
 
-We make use of [esy](https://esy.sh) for dependency management, which sandboxes the dependencies. Apart from the very few external dependencies (including esy), installing Gillian's dependency **will not** affect any current environment you have and it should therefore be perfectly safe to install the development environment directly on your machine.
+We make use of [esy](https://esy.sh) for dependency management, which sandboxes the dependencies. Apart from the very few external dependencies (including esy), installing Gillian's dependency **will not** affect any current environment you have (including your opam switches) and it should therefore be perfectly safe to install the development environment directly on your machine.
 
 ### External dependencies
 
@@ -95,9 +95,67 @@ esy
 
 This may take a while, as it is installing and building sandboxed versions of every dependencies, including OCaml and Z3.
 
-### Testing your setup
 
-Once the project is built, try running:
+## Docker
+
+We explain how to get the docker container up and ready for development inside a docker environment. Note that the docker images are not persistent.
+
+### Getting the docker image
+
+There are two ways of getting the docker image with the development environment : building it yourself of pulling it from the docker hub.
+
+:::info
+If you are evaluating Gillian as an artifact, please build the image yourself from the provided repository, or pull the docker image with the tag associated to the artifact.
+:::
+
+#### Building the image yourself
+
+You need git to clone the Gillian repository :
+
+```bash
+git clone [insert url] Gillian
+cd Gillian/.docker
+```
+
+Then simply build the docker image :
+```bash
+docker build -t gillian .
+```
+
+This will take a while, because it will install esy, copying the repo and build everything.
+
+#### Pulling the image from Docker Hub
+
+Simply run
+
+```bash
+docker pull gillian:[tag]
+```
+
+with `[tag]` replaced with the appropriate tag. If you do not know, use `latest` (`gillian:latest`).
+
+### Running the container.
+
+Once the image is built, run:
+```bash
+docker run -it gillan
+```
+
+This will start the container and give you access through a `zsh` shell.
+
+:::warning
+The docker container is not persistent and do not mount any persistent volume. Once you exit the container, all changes will be lost.
+:::
+
+### What it contains
+
+The docker container contains :
+ - The Gillian repository in `/app/Gillian`
+ - Our fork of `Test262` in  `/app/test267`
+
+## Testing your setup
+
+Once the project is built on your machine, or that you are inside the docker container, try running:
 ```bash
 esy x gillian-js verify Gillian-JS/Examples/JaVerT/BST.js --silent
 ```
@@ -131,4 +189,3 @@ Tests:       0 failed, 6 passed, 6 total
 Time:        [Time]
 ```
 
-## Docker
