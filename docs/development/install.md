@@ -151,7 +151,7 @@ The docker container is not persistent and does not mount any persistent volume.
 
 The docker container contains :
  - The Gillian repository in `/app/Gillian`
- - Our fork of `Test262` in  `/app/test267`
+ - Our fork of `Test262` in  `/app/test262`
 
 ## Testing your setup
 
