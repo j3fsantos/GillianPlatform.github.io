@@ -74,7 +74,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/GillianPlatform/gillianplatform.github.io',
+            'https://github.com/GillianPlatform/gillianplatform.github.io/tree/source',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
