@@ -22,8 +22,9 @@ jobs:
           ${{ runner.os }}-yarn-
     - run: yarn
     - run: yarn test
+    - run: ssh-add<(echo "$SSH_KEY_PRIVATE")
     - run: yarn deploy
       env:
-        GITHUB_USER: giltho
+        GIT_USER: giltho
         USE_SSH: true
         
