@@ -144,7 +144,7 @@ docker run -it gillan
 This will start the container and give you access through a `zsh` shell.
 
 :::warning
-The docker container is not persistent and do not mount any persistent volume. Once you exit the container, all changes will be lost.
+The docker container is not persistent and does not mount any persistent volume. Once you exit the container, all changes will be lost.
 :::
 
 ### What it contains
