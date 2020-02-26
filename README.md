@@ -1,3 +1,5 @@
+# Warning, everything pushed to the source branch is automatically deployed
+
 # Website
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
