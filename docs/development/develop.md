@@ -37,3 +37,18 @@ As we use `esy` as our package manager / build system, after every modification,
 Due to a bug in the current version of esy, the `esy` command has to called from the root of the workspace for the modifications to apply properly.
 :::
 <!-- prettier-ignore-end -->
+
+
+### Generating the documentation
+
+To generate the API documentation of Gillian, run:
+
+```shell
+esy dune build @doc
+```
+Then, open the following file with your prefered browser: `_build/default/_doc/_html/index.html`.
+
+On macOS, this can be done by running:
+```
+open _build/default/_doc/_html/index.html
+```
