@@ -1,7 +1,7 @@
 ---
 id: cosette
 title: "Gillian-JS: Symbolic Testing"
---- 
+---
 
 ## Writing Symbolic Tests
 
@@ -111,9 +111,9 @@ We symbolically test Buckets.js, a real-world JavaScript data-structure library,
 
 | Data Structure      |  Tests |  GIL Commands |  Time (s)  |
 |:-------------------:|:------:|:------------------------:|:----------:|
-| **arrays**          |      9 |       330,147  |   2.678 |
+| **arrays**          |      9 |       330,147  |   2.682 |
 | **bag**             |      7 |     1,343,393  |   5.064 |
-| **bstree**          |     11 |     3,751,092  |  12.507 |
+| **bstree**          |     11 |     3,751,092  |  12.535 |
 | **dictionary**      |      7 |       401,575  |   1.833 |
 | **heap**            |      4 |     1,492,204  |   3.411 |
 | **linkedlist**      |      9 |       588,714  |   4.141 |
@@ -121,10 +121,10 @@ We symbolically test Buckets.js, a real-world JavaScript data-structure library,
 | **queue**           |      6 |       407,106  |   2.140 |
 | **priorityqueue**   |      5 |     2,312,226  |   4.121 |
 | **set**             |      6 |     2,178,222  |   4.458 |
-| **stack**           |      4 |       306,449  |   1.625 |
-| **Total**           | **74** | **14,217,778** | **45.781** |
+| **stack**           |      4 |       306,449  |   1.645 |
+| **Total**           | **74** | **14,217,778** | **45.833** |
 
-The results are 1.3% slower and the number of executed GIL commands is 0.1% greater than reported in the submitted version---we will update accordingly. The former is due to a minor overhead introduced by the refactoring of the tool, whereas the latter is the effect of (also minor) changes to the symbolic execution engine and the JS-2-GIL compiler.
+The results are 1.3% slower and the number of executed GIL commands is 0.1% greater than reported in the submitted version---we will update accordingly. This is due to minor changes to the JS-2-GIL compiler and the JS symbolic engine.
 
 ### Reproducing the Results
 
@@ -153,7 +153,7 @@ In order to obtain the number of executed commands, append the `count` parameter
 
 | **arrays**   | 1      | 2      | 3      | 4      | 5      | 6      | 7      | 8      | 9      | **Total**   |
 |:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---------:|
-| **Time (s)**     | 0.259|	0.288|	0.264|	0.264|	0.259|	0.285|	0.258|	0.569	|0.232|	2.678
+| **Time (s)**     | 0.259|	0.288|	0.264|	0.268|	0.259|	0.285|	0.258|	0.569	|0.232|	2.682
 | **GIL Commands** | 33,903 | 34,675 | 34,896 | 42,866 | 30,483 | 55,210 | 34,765 | 39,532 | 23,817 | 330,147 |
 
 | **bag**      | 1      | 2      | 3       | 4       | 5       | 6       | 7       | **Total**     |
@@ -163,7 +163,7 @@ In order to obtain the number of executed commands, append the `count` parameter
 
 | **bstree**   | 1       | 2         | 3      | 4       | 5       | 6       | 7       | 8       | 9       | 10      | 11      | **Total**     |
 |:----------:|:---------:|:-----------:|:--------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:-----------:|
-| **Time (s)**     | 0.746	|2.540|	0.684|	0.763|	1.015|	1.028	|1.013|	1.131|	0.762|	0.762	|2.063|	12.507
+| **Time (s)**     | 0.746	|2.540|	0.684|	0.763|	1.015|	1.028	|1.013|	1.131|	0.762|	0.790	|2.063|	12.535
 | **GIL Commands** | 123,798 | 1,254,635 | 72,637 | 169,155 | 192,683 | 192,683 | 191,633 | 390,919 | 100,266 | 177,362 | 885,321 | 3,751,092 |
 
 | **dictionary** | 1      | 2      | 3      | 4      | 5      | 6      | 7      | **Total**   |
@@ -203,7 +203,7 @@ In order to obtain the number of executed commands, append the `count` parameter
 
 | **stack**    | 1      | 2      | 3      | 4       | **Total**   |
 |:----------:|:--------:|:--------:|:--------:|:---------:|:---------:|
-| **Time (s)**     | 0.343|	0.331	|0.331	|0.620	|1.625
+| **Time (s)**     | 0.343|	0.331	|0.351	|0.620	|1.645
 | **GIL Commands** | 52,233 | 44,958 | 55,097 | 154,161 | 306,449 |
 
 ### Reproducing the Buckets.js Bugs found by [\[Cosette\]](references.md#cosette-symbolic-execution-for-javascript) and [\[JaVerT 2.0\]](references.md#javert20-compositional-symbolic-execution-for-javascript)
