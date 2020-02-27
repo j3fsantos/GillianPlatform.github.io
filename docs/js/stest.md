@@ -128,7 +128,7 @@ We symbolically test Buckets.js, a real-world JavaScript data-structure library,
 |      **stack**      |   4    |    306,449     |   1.625    |
 |      **Total**      | **74** | **14,217,778** | **45.781** |
 
-The results are 1.3% slower and the number of executed GIL commands is 0.1% greater than reported in the submitted version---we will update accordingly. The former is due to a minor overhead introduced by the refactoring of the tool, whereas the latter is the effect of (also minor) changes to the symbolic execution engine and the JS-2-GIL compiler.
+The results are 1.3% slower and the number of executed GIL commands is 0.1% greater than reported in the submitted version---we will update accordingly. This is due to minor changes to the JS-2-GIL compiler and the JS symbolic engine.
 
 ### Reproducing the Results
 
