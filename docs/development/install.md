@@ -4,27 +4,28 @@ title: Setting up for development
 ---
 
 This section details how to set up Gillian in order to develop on it. It is useful for:
- - People evaluating Gillian as a paper artifact
- - People wanting to contribute to the project
- - People generally curious about the project
-  
+
+- People evaluating Gillian as a paper artifact
+- People wanting to contribute to the project
+- People generally curious about the project
+
 The Gillian development repository contains :
- - The GillianCore folder, which is actually the Gillian Library.
- - [Gillian-JS](../js/intro)
- - [Gillian-C](../c/intro)
- - WISL, a small language for teaching and research.
+
+- The GillianCore folder, which is actually the Gillian Library.
+- [Gillian-JS](../js/intro)
+- [Gillian-C](../c/intro)
+- WISL, a small language for teaching and research.
 
 ## What type of installation should I chose ?
 
-
 Gillian **should** work on most Linux and macOS machine, and cannot be installed on Windows machines for now. We do not have a large range of different machines to test it on, so there might also be compatibility issues with some Linux or old versions of macOS. We primarily tested on :
- - macOS Catalina - x86_64
- - Ubuntu 18.04.4 LTS - x86_64
+
+- macOS Catalina - x86_64
+- Ubuntu 18.04.4 LTS - x86_64
 
 If your machine is running Linux or macOS, we encourage you to install the development environment directly on your machine. The installation is safe and will not disrupt your current setup (see [sandboxing](#sandboxing)).
 
 If the installation does not work on your machine, or if you are running Windows, please follow the steps for [Docker installation](#docker) or download the proposed virtual machine.
-
 
 ## Linux and macOS
 
@@ -39,11 +40,13 @@ We make use of [esy](https://esy.sh) for dependency management, which sandboxes 
 Esy is installed through NPM. Therefore, one should first [install NodeJS](https://nodejs.org/en/download/package-manager/). Our project does not use NodeJS or NPM, but for now, it is the only way to install Esy. If you do not already have NodeJS installed and do not want to install it, please use the [Docker installation](#docker) or the Virtual Machine.
 
 To install Esy, run:
+
 ```bash
 npm install -g esy
 ```
 
 Some machines may require sudo rights to install esy globally, in that case, run:
+
 ```bash
 sudo npm install -g esy --unsafe-perm
 ```
@@ -75,9 +78,11 @@ Then, make sure that your development tools are up to date.
 
 ### Getting the source code
 
+<!-- prettier-ignore-start -->
 :::info
 If you are evaluating Gillian as an artifact, please use the source code provided to you as part of the artifact submission.
 :::
+<!-- prettier-ignore-end -->
 
 In your terminal, go into your desired folder and run:
 
@@ -89,12 +94,12 @@ cd Gillian
 ### Installing dependencies and building
 
 Thanks to esy, it is extremely simple to build the entire Gillian platform (including Gillian-C and Gillian-JS). In the Gillian folder, simply run :
+
 ```bash
 esy
 ```
 
 This may take a while, as it is installing and building sandboxed versions of every dependencies, including OCaml and Z3.
-
 
 ## Docker
 
@@ -104,9 +109,11 @@ We explain how to get the docker container up and ready for development inside a
 
 There are two ways of getting the docker image with the development environment : building it yourself of pulling it from the docker hub.
 
+<!-- prettier-ignore-start -->
 :::info
 If you are evaluating Gillian as an artifact, please build the image yourself from the provided repository, or pull the docker image with the tag associated to the artifact.
 :::
+<!-- prettier-ignore-end -->
 
 #### Building the image yourself
 
@@ -118,6 +125,7 @@ cd Gillian/.docker
 ```
 
 Then simply build the docker image :
+
 ```bash
 docker build -t gillian .
 ```
@@ -137,30 +145,37 @@ with `[tag]` replaced with the appropriate tag. If you do not know, use `latest`
 ### Running the container.
 
 Once the image is built, run:
+
 ```bash
-docker run -it gillan
+docker run -it gillian
 ```
 
 This will start the container and give you access through a `zsh` shell.
 
+<!-- prettier-ignore-start -->
 :::warning
 The docker container is not persistent and does not mount any persistent volume. Once you exit the container, all changes will be lost.
 :::
+<!-- prettier-ignore-end -->
 
 ### What it contains
 
 The docker container contains :
- - The Gillian repository in `/app/Gillian`
- - Our fork of `Test262` in  `/app/test267`
+
+- The Gillian repository in `/app/Gillian`
+- Our fork of `Test262` in `/app/test262`
+- our fork of `Collection-C` in `/app/collection-c`
 
 ## Testing your setup
 
 Once the project is built on your machine, or that you are inside the docker container, try running:
+
 ```bash
 esy x gillian-js verify Gillian-JS/Examples/JaVerT/BST.js --silent
 ```
 
 which should yield:
+
 ```logs
 Obtaining specs to verify.
 Obtained 5 symbolic tests
@@ -174,13 +189,15 @@ All specs succeeded: [Time]
 ```
 
 You can also try running:
+
 ```bash
 esy x gillian-c bulk-exec Gillian-C/examples/concrete
 ```
 
 which should yield
+
 ```logs
-Registering tests...   
+Registering tests...
 Running 1 test suite
  PASS  .
 
@@ -188,4 +205,3 @@ Test Suites: 0 failed, 1 passed, 1 total
 Tests:       0 failed, 6 passed, 6 total
 Time:        [Time]
 ```
-

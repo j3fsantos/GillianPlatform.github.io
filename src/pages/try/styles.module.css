@@ -4,6 +4,11 @@
   display: flex;
 }
 
+.output {
+  background-color: white;
+  color: black;
+}
+
 .main > div {
   flex: 1;
 }

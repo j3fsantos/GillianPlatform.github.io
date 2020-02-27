@@ -3,12 +3,12 @@ async function fetchData(code, setLoading, setError, setRet) {
   setError(false);
   setRet(null);
   const headers = new Headers();
-  headers.append("Content-Type", "text/plain");
-  headers.append("Content-Length", code.length.toString());
+  headers.append('Content-Type', 'text/plain');
+  headers.append('Content-Length', code.length.toString());
   try {
-    const resp = await fetch("https://cosette.giltho.com/", {
+    const resp = await fetch('https://cosette.giltho.com/', {
       mode: 'cors',
-      method: "POST",
+      method: 'POST',
       body: code,
       headers,
     });

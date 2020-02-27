@@ -6,22 +6,20 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'GillianPlatform', // Usually your GitHub org/user name.
   projectName: 'GillianPlatform.github.io', // Usually your repo name.
-  scripts: [
-    '/scripts/fetchCosette.js'
-  ],
+  scripts: ['/scripts/fetchCosette.js'],
   themeConfig: {
     navbar: {
       logo: {
         alt: 'Gillian logo, by Valentin Magnat',
         srcDark: 'img/logo_full_black.svg',
-        src: 'img/logo_full_white.svg'
+        src: 'img/logo_full_white.svg',
       },
       links: [
-        {to: 'docs/start', label: 'Docs', position: 'left'},
-        {to: 'api/index.html', label: 'API Reference', position: 'left'},
-        {to: 'docs/js/intro', label: 'Gillian-JS', position: 'left'},
-        {to: 'docs/c/intro', label: 'Gillian-C', position: 'left'},
-        {to: 'try', label: 'Try', position: 'right'},
+        { to: 'docs/start', label: 'Docs', position: 'left' },
+        { to: 'api', label: 'API Reference', position: 'left' },
+        { to: 'docs/js/intro', label: 'Gillian-JS', position: 'left' },
+        { to: 'docs/c/intro', label: 'Gillian-C', position: 'left' },
+        { to: 'try', label: 'Try', position: 'right' },
         // {to: 'blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/giltho/GillianDev',
@@ -74,7 +72,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/GillianPlatform/gillianplatform.github.io/tree/source',
+            'https://github.com/GillianPlatform/GillianPlatform.github.io/edit/source/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

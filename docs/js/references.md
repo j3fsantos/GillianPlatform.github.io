@@ -1,6 +1,6 @@
 ---
 id: references
-title: "Gillian-JS: References"
+title: 'Gillian-JS: References'
 ---
 
 ## JaVerT: JavaScript Verification Toolchain
@@ -34,9 +34,9 @@ PACMPL, vol. 2(POPL), pp. 50:1–50:33
 ### Authors
 
 - José Fragoso Santos
-- Petar Maksimović 
-- Daiva Naudžiūnienė 
-- Thomas Wood 
+- Petar Maksimović
+- Daiva Naudžiūnienė
+- Thomas Wood
 - Philippa Gardner
 
 ### Abstract

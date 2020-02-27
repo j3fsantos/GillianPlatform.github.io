@@ -12,8 +12,9 @@ const features = [
     imageUrl: 'img/undraw_fitting_piece.svg',
     description: (
       <>
-        Gillian uses an intermediate language for verification called GIL.
-        It is parametric on <code>actions</code> of which the semantics is not predifined by the framework.
+        Gillian uses an intermediate language for verification called GIL. It is
+        parametric on <code>actions</code> of which the semantics is not
+        predifined by the framework.
       </>
     ),
   },
@@ -22,9 +23,9 @@ const features = [
     imageUrl: 'img/undraw_annotation.svg',
     description: (
       <>
-        We've worked hard on making Gillian as easy to use as possible.
-        It comes with a shiny API that lets you describe your memory model and get a powerful tool with
-        an elegant CLI for free.
+        We've worked hard on making Gillian as easy to use as possible. It comes
+        with a shiny API that lets you describe your memory model and get a
+        powerful tool with an elegant CLI for free.
       </>
     ),
   },
@@ -33,15 +34,15 @@ const features = [
     imageUrl: 'img/undraw_proof.svg',
     description: (
       <>
-        Gillian comes with fully parametric meta-theoretical results.
-        We try to alleviate your work as much as possible: only prove what you implement,
+        Gillian comes with fully parametric meta-theoretical results. We try to
+        alleviate your work as much as possible: only prove what you implement,
         nothing more.
       </>
     ),
   },
 ];
 
-function Feature({imageUrl, title, description}) {
+function Feature({ imageUrl, title, description }) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
     <div className={classnames('col col--4', styles.feature)}>
@@ -58,7 +59,7 @@ function Feature({imageUrl, title, description}) {
 
 function Home() {
   const context = useDocusaurusContext();
-  const {siteConfig = {}} = context;
+  const { siteConfig = {} } = context;
   let imgUrl = 'img/logo.svg';
   const logoUrl = useBaseUrl(imgUrl);
   return (
@@ -68,7 +69,7 @@ function Home() {
       <header className={classnames('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">
-            <img className="logo_title" src={logoUrl}/>
+            <img className="logo_title" src={logoUrl} />
             Gillian
           </h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>

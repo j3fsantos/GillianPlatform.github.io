@@ -5,14 +5,13 @@ title: JS-2-GIL and Test262
 
 ## Coverage of JS-2-GIL
 
- As mentioned earlier, the target version of JavaScript for JS-2-GIL is ECMAScript ES5 Strict. JS-2-GIL has broad coverage.
- It supports the entire core (chapters 8-14) except the `RegExp` literal and the majority of built-in libraries, except the following:
+As mentioned earlier, the target version of JavaScript for JS-2-GIL is ECMAScript ES5 Strict. JS-2-GIL has broad coverage. It supports the entire core (chapters 8-14) except the `RegExp` literal and the majority of built-in libraries, except the following:
 
- - `Date`, `RegExp`, `JSON`
- - `Number.prototype.toFixed`
- - `String.fromCharCode`
- - `charCodeAt`, `localeCompare`, `match`, `replace`, `search`, `split`, `trim`, `toLocaleLowerCase`, `toLocaleUpperCase`,  `toLowerCase`, `toUpperCase` (in `String.prototype`)
- - `decodeURI`, `decodeURIComponent`, `encodeURI`, `encodeURIComponent`, `parseInt`, `parseFloat` (in the global object)
+- `Date`, `RegExp`, `JSON`
+- `Number.prototype.toFixed`
+- `String.fromCharCode`
+- `charCodeAt`, `localeCompare`, `match`, `replace`, `search`, `split`, `trim`, `toLocaleLowerCase`, `toLocaleUpperCase`, `toLowerCase`, `toUpperCase` (in `String.prototype`)
+- `decodeURI`, `decodeURIComponent`, `encodeURI`, `encodeURIComponent`, `parseInt`, `parseFloat` (in the global object)
 
 Additionally, indirect `eval` is not supported, as it is meant to be executed as non-strict code, and all `Function` constructor code is treated as strict-mode code.
 
@@ -20,13 +19,9 @@ Additionally, indirect `eval` is not supported, as it is meant to be executed as
 
 The JS-2-GIL compiler can be split into two compilers: JS-2-JSIL, which compiles JavaScript to JSIL, the intermediate representation that we have used in [[JaVerT]](references.md#javert-javascript-verification-toolchain)/[\[Cosette\]](references.md#cosette-symbolic-execution-for-javascript)/[\[JaVerT 2.0\]](references.md#javert20-compositional-symbolic-execution-for-javascript); and JSIL-2-GIL, the compiler from JSIL to GIL, the intermediate representation of Gillian.
 
-Previously, we have tested the correctness of JS-2-JSIL using [this commit (from May 30th 2016)](https://github.com/tc39/test262/commit/91d06f) of the Test262 official test suite.
-As the target version of JavaScript for this commit was already ES6, it was necessary for us to identify the subset of tests appropriate for JS-2-JSIL, as explained in detail in [\[JaVerT\]](references.md#javert-javascript-verification-toolchain), arriving at 8797 applicable tests, of which JS-2-JSIL passes 100%.
+Previously, we have tested the correctness of JS-2-JSIL using [this commit (from May 30th 2016)](https://github.com/tc39/test262/commit/91d06f) of the Test262 official test suite. As the target version of JavaScript for this commit was already ES6, it was necessary for us to identify the subset of tests appropriate for JS-2-JSIL, as explained in detail in [\[JaVerT\]](references.md#javert-javascript-verification-toolchain), arriving at 8797 applicable tests, of which JS-2-JSIL passes 100%.
 
-We have initially tested JS-2-GIL successfully on the same 8797 tests and reported this in the submitted version of the paper.
-However, these tests were not systematically categorised and we were not able to automate the testing process to our satisfaction using the bulk testing mechanism of Gillian.
-For this reason, we have chosen to work with the latest version of Test262, forked [here](https://github.com/giltho/javert-test262), where each tests comes with a precise description of its intended outcome.
-For example, a test that is supposed to fail at parsing time with a JavaScript native syntax error will contain the following in its header:
+We have initially tested JS-2-GIL successfully on the same 8797 tests and reported this in the submitted version of the paper. However, these tests were not systematically categorised and we were not able to automate the testing process to our satisfaction using the bulk testing mechanism of Gillian. For this reason, we have chosen to work with the latest version of Test262, forked [here](https://github.com/giltho/javert-test262), where each tests comes with a precise description of its intended outcome. For example, a test that is supposed to fail at parsing time with a JavaScript native syntax error will contain the following in its header:
 
 ```
 negative:
@@ -34,23 +29,20 @@ negative:
   type: SyntaxError
 ```
 
+We re-filter for the applicable tests and run them using JS-2-GIL and the concrete semantics of Gillian-JS. The summary results are presented in the table below and will be included in the final version of the paper. A more detailed, per-folder breakdown is available further below.
 
-We re-filter for the applicable tests and run them using JS-2-GIL and the concrete semantics of Gillian-JS.
-The summary results are presented in the table below and will be included in the final version of the paper.
-A more detailed, per-folder breakdown is available further below.
-
-|                              | Language |  Built-ins  |  Total  |
-|:----------------------------:|:--------:|:-----------:|:-------:|
-| **Total tests**              |    3202  |       7860  |  11062  |
-| Non-strict tests             |     583  |        136  |    719  |
-| **Strict tests**             |    2619  |       7724  |  10343  |
-| Non-strict features          |      41  |         50  |     91  |
-| For unimplemented features   |      17  |       1182  |   1199  |
-| Using unimplemented features |      23  |         12  |     35  |
-| ES6+                         |       3  |          2  |      5  |
-| **Applicable**               |    2535  |       6748  |   9013  |
-| Passing                      |    2530  |       6745  |   9005  |
-| Failing                      |       5  |          3  |      8  |
+|                              | Language | Built-ins | Total |
+| :--------------------------: | :------: | :-------: | :---: |
+|       **Total tests**        |   3202   |   7860    | 11062 |
+|       Non-strict tests       |   583    |    136    |  719  |
+|       **Strict tests**       |   2619   |   7724    | 10343 |
+|     Non-strict features      |    41    |    50     |  91   |
+|  For unimplemented features  |    17    |   1182    | 1199  |
+| Using unimplemented features |    23    |    12     |  35   |
+|             ES6+             |    3     |     2     |   5   |
+|        **Applicable**        |   2535   |   6748    | 9013  |
+|           Passing            |   2530   |   6745    | 9005  |
+|           Failing            |    5     |     3     |   8   |
 
 ### Explanation: Table Columns
 
@@ -84,19 +76,20 @@ The following eight tests
 - `test262/test/built-ins/Number/S9.3.1_A3_T2.js`
 - `test262/test/built-ins/Number/S9.3.1_A2.js`
 
-
-all fail due to a discrepancy between how Unicode characters are treated in JavaScript (either UCS-2 or UTF-16) and OCaml (sequences of bytes).
-One solution would be to move to strings provided by the [`Camomile`](http://camomile.sourceforge.net/) library instead of the native OCaml strings.
+all fail due to a discrepancy between how Unicode characters are treated in JavaScript (either UCS-2 or UTF-16) and OCaml (sequences of bytes). One solution would be to move to strings provided by the [`Camomile`](http://camomile.sourceforge.net/) library instead of the native OCaml strings.
 
 ### Reproducing the Results
 
 1. Clone our [forked Test262 repository](https://github.com/giltho/javert-test262) to a folder on your machine. Inside that folder, the tests can be found in the `test` subfolder. In particular, `test/language` contains the core language tests, whereas `test/built-ins` contains the tests for the built-in libraries.
 2. To run all of the tests, execute the following command inside your Gillian folder:
+
 ```bash
 esy
 esy x javert bulk-exec [relative path to your Test262 folder]/test
 ```
+
 For example, we normally clone Test262 to at the same level as Gillian and change the folder name from `javert-test262` to `test262`. Therefore, we run all of the tests by executing the following starting from the `Gillian` folder:
+
 ```bash
 cd ..
 git clone https://github.com/giltho/javert-test262.git test262
@@ -105,42 +98,42 @@ esy
 esy x javert bulk-exec ../test262/test
 ```
 
-The testing should take approximately thirty minutes.
-The bulk tester will actively report progress, folder-by-folder, and signal any test failures encountered.
-In the end, a list of all failed tests (the eight given above) will be printed.
+The testing should take approximately thirty minutes. The bulk tester will actively report progress, folder-by-folder, and signal any test failures encountered. In the end, a list of all failed tests (the eight given above) will be printed.
 
 1. If you would like to test a specific subfolder of the test suite, simply add it to the test path. For example, to run only the tests for `Array.prototype.reduce`, execute
+
 ```bash
 esy x javert bulk-exec ../test262/test/built-ins/Array/prototype/reduce/
 ```
+
 4. If you would like to examine the filtered tests, you can find them, as described above, listed in the [`test262_filtering.ml`](https://github.com/giltho/GillianDev/blob/master/Gillian-JS/lib/test262/test262_filtering.ml) file.
 
 ### Detailed Per-Folder Breakdown: Language
 
-|             | arguments-object | asi | comments | directive-prologue | eval-code | expressions | function-code | future-reserved-words | global-code | identifier-resolution | identifiers | keywords | line-terminators | literals | punctuators | reserved-words | source-text | statements | types | white-space | Total
-|:---------------------:|:------------------:|:-----:|:----------:|:--------------------:|:-----------:|:-------------:|:---------------:|:-----------------------:|:-------------:|:-----------------------:|:-------------:|:----------:|:------------------:|:----------:|:-------------:|:----------------:|:-------------:|:------------:|:-------:|:-------------:|:-----------:|
-| **All tests**           | 46               | 101 | 18       | 62                 | 58        | 1469        | 212           | 55                    | 3           | 11                    | 49          | 25       | 41               | 145      | 11          | 13             | 1           | 733        | 109   | 40          | 3202
-| **Non-strict tests**    | 12               | 0   | 0        | 57                 | 4         | 153         | 107           | 7                     | 2           | 5                     | 0           | 0        | 0                | 0        | 0           | 0              | 0           | 227        | 9     | 0           | 583
-| **Strict tests**        | 34               | 101 | 18       | 5                  | 54        | 1316        | 105           | 48                    | 1           | 6                     | 49          | 25       | 41               | 145      | 11          | 13             | 1           | 506        | 100   | 40          | 2619
-| **Non-strict features** | 0                | 0   | 0        | 0                  | 25        | 1           | 5             | 0                     | 0           | 0                     | 0           | 0        | 0                | 0        | 0           | 0              | 0           | 10         | 0     | 0           | 41
-| **For unimplemented features**   | 0                | 0   | 0        | 0                  | 0         | 0           | 0             | 0                     | 0           | 0                     | 0           | 0        | 0                | 17       | 0           | 0              | 0           | 0          | 0     | 0           | 17
-| **Using unimplemented features** | 0                | 0   | 2        | 0                  | 0         | 3           | 4             | 0                     | 0           | 0                     | 0           | 0        | 0                | 12       | 0           | 0              | 0           | 2          | 0     | 0           | 23
-| **ES6+**                | 0                | 0   | 0        | 0                  | 0         | 0           | 0             | 0                     | 0           | 0                     | 0           | 0        | 0                | 0        | 0           | 0              | 0           | 3          | 0     | 0           | 3
-| **Applicable**          | 34               | 101 | 16       | 5                  | 29        | 1312        | 96            | 48                    | 1           | 6                     | 49          | 25       | 41               | 116      | 11          | 13             | 1           | 491        | 100   | 40          | 2535
-| **Passing**             | 34               | 101 | 16       | 5                  | 29        | 1312        | 96            | 48                    | 1           | 6                     | 49          | 25       | 37               | 116      | 11          | 13             | 0           | 491        | 100   | 40          | 2530
-| **Failing**             | 0                | 0   | 0        | 0                  | 0         | 0           | 0             | 0                     | 0           | 0                     | 0           | 0        | 4                | 0        | 0           | 0              | 1           | 0          | 0     | 0           | 5
+|                                  | arguments-object |  asi  | comments | directive-prologue | eval-code | expressions | function-code | future-reserved-words | global-code | identifier-resolution | identifiers | keywords | line-terminators | literals | punctuators | reserved-words | source-text | statements | types | white-space | Total |
+| :------------------------------: | :--------------: | :---: | :------: | :----------------: | :-------: | :---------: | :-----------: | :-------------------: | :---------: | :-------------------: | :---------: | :------: | :--------------: | :------: | :---------: | :------------: | :---------: | :--------: | :---: | :---------: | :---: |
+|          **All tests**           |        46        |  101  |    18    |         62         |    58     |    1469     |      212      |          55           |      3      |          11           |     49      |    25    |        41        |   145    |     11      |       13       |      1      |    733     |  109  |     40      | 3202  |
+|       **Non-strict tests**       |        12        |   0   |    0     |         57         |     4     |     153     |      107      |           7           |      2      |           5           |      0      |    0     |        0         |    0     |      0      |       0        |      0      |    227     |   9   |      0      |  583  |
+|         **Strict tests**         |        34        |  101  |    18    |         5          |    54     |    1316     |      105      |          48           |      1      |           6           |     49      |    25    |        41        |   145    |     11      |       13       |      1      |    506     |  100  |     40      | 2619  |
+|     **Non-strict features**      |        0         |   0   |    0     |         0          |    25     |      1      |       5       |           0           |      0      |           0           |      0      |    0     |        0         |    0     |      0      |       0        |      0      |     10     |   0   |      0      |  41   |
+|  **For unimplemented features**  |        0         |   0   |    0     |         0          |     0     |      0      |       0       |           0           |      0      |           0           |      0      |    0     |        0         |    17    |      0      |       0        |      0      |     0      |   0   |      0      |  17   |
+| **Using unimplemented features** |        0         |   0   |    2     |         0          |     0     |      3      |       4       |           0           |      0      |           0           |      0      |    0     |        0         |    12    |      0      |       0        |      0      |     2      |   0   |      0      |  23   |
+|             **ES6+**             |        0         |   0   |    0     |         0          |     0     |      0      |       0       |           0           |      0      |           0           |      0      |    0     |        0         |    0     |      0      |       0        |      0      |     3      |   0   |      0      |   3   |
+|          **Applicable**          |        34        |  101  |    16    |         5          |    29     |    1312     |      96       |          48           |      1      |           6           |     49      |    25    |        41        |   116    |     11      |       13       |      1      |    491     |  100  |     40      | 2535  |
+|           **Passing**            |        34        |  101  |    16    |         5          |    29     |    1312     |      96       |          48           |      1      |           6           |     49      |    25    |        37        |   116    |     11      |       13       |      0      |    491     |  100  |     40      | 2530  |
+|           **Failing**            |        0         |   0   |    0     |         0          |     0     |      0      |       0       |           0           |      0      |           0           |      0      |    0     |        4         |    0     |      0      |       0        |      1      |     0      |   0   |      0      |   5   |
 
 ### Detailed Per-Folder Breakdown: Built-ins
 
-|           | Array | Boolean | Date | decodeURI | decodeURIComponent | encodeURI | encodeURIComponent | Error | eval | Function | global | Infinity | isFinite | isNan | JSON | Math | NaN | Number | Object | parseFloat | parseInt | RegExp | String | undefined | Total
-|:---------------------:|:-------:|:---------:|:------:|:-----------:|:--------------------:|:-----------:|:--------------------:|:-------:|:------:|:----------:|:--------:|:----------:|:----------:|:-------:|:------:|:------:|:-----:|:--------:|:--------:|:------------:|:----------:|:--------:|:--------:|:-----------:|:----------:|
-| **All tests**           | 2171  | 42      | 430  | 52        | 52                 | 28        | 28                 | 33    | 7    | 398      | 31     | 7        | 2        | 2     | 90   | 81   | 7   | 152    | 2892   | 40         | 57       | 501    | 749    | 8         | 7860
-| **Non-strict tests**    | 27    | 0       | 0    | 0         | 0                  | 0         | 0                  | 0     | 0    | 88       | 4      | 2        | 0        | 0     | 0    | 0    | 2   | 0      | 7      | 0          | 0        | 0      | 3      | 3         | 136
-| **Strict tests**        | 2144  | 42      | 430  | 52        | 52                 | 28        | 28                 | 33    | 7    | 310      | 27     | 5        | 2        | 2     | 90   | 81   | 5   | 152    | 2885   | 40         | 57       | 501    | 746    | 5         | 7724
-| **Non-strict features** | 0     | 0       | 0    | 0         | 0                  | 0         | 0                  | 0     | 0    | 50       | 0      | 0        | 0        | 0     | 0    | 0    | 0   | 0      | 0      | 0          | 0        | 0      | 0      | 0         | 50
-| **For unimplemented**   | 0     | 0       | 17   | 45        | 45                 | 21        | 21                 | 0     | 0    | 0        | 0      | 0        | 0        | 0     | 81   | 0    | 0   | 5      | 5      | 33         | 50       | 455    | 404    | 0         | 1182
-| **Using unimplemented features** | 3     | 0       | 0    | 0         | 0                  | 0         | 0                  | 0     | 0    | 3        | 0      | 0        | 0        | 0     | 0    | 0    | 0   | 0      | 0      | 0          | 0        | 0      | 6      | 0         | 12
-| **ES6+**                | 0     | 0       | 0    | 0         | 0                  | 0         | 0                  | 0     | 0    | 0        | 0      | 0        | 0        | 0     | 0    | 0    | 0   | 0      | 2      | 0          | 0        | 0      | 0      | 0         | 2
-| **Applicable**          | 2141  | 42      | 413  | 7         | 7                  | 7         | 7                  | 33    | 7    | 257      | 27     | 5        | 2        | 2     | 9    | 81   | 5   | 147    | 2878   | 7          | 7        | 46     | 336    | 5         | 6748
-| **Passing**             | 2141  | 42      | 413  | 7         | 7                  | 7         | 7                  | 33    | 7    | 257      | 27     | 5        | 2        | 2     | 9    | 81   | 5   | 144    | 2878   | 7          | 7        | 46     | 336    | 5         | 6745
-| **Failing**             | 0     | 0       | 0    | 0         | 0                  | 0         | 0                  | 0     | 0    | 0        | 0      | 0        | 0        | 0     | 0    | 0    | 0   | 3      | 0      | 0          | 0        | 0      | 0      | 0         | 3
+|                                  | Array | Boolean | Date  | decodeURI | decodeURIComponent | encodeURI | encodeURIComponent | Error | eval  | Function | global | Infinity | isFinite | isNan | JSON  | Math  |  NaN  | Number | Object | parseFloat | parseInt | RegExp | String | undefined | Total |
+| :------------------------------: | :---: | :-----: | :---: | :-------: | :----------------: | :-------: | :----------------: | :---: | :---: | :------: | :----: | :------: | :------: | :---: | :---: | :---: | :---: | :----: | :----: | :--------: | :------: | :----: | :----: | :-------: | :---: |
+|          **All tests**           | 2171  |   42    |  430  |    52     |         52         |    28     |         28         |  33   |   7   |   398    |   31   |    7     |    2     |   2   |  90   |  81   |   7   |  152   |  2892  |     40     |    57    |  501   |  749   |     8     | 7860  |
+|       **Non-strict tests**       |  27   |    0    |   0   |     0     |         0          |     0     |         0          |   0   |   0   |    88    |   4    |    2     |    0     |   0   |   0   |   0   |   2   |   0    |   7    |     0      |    0     |   0    |   3    |     3     |  136  |
+|         **Strict tests**         | 2144  |   42    |  430  |    52     |         52         |    28     |         28         |  33   |   7   |   310    |   27   |    5     |    2     |   2   |  90   |  81   |   5   |  152   |  2885  |     40     |    57    |  501   |  746   |     5     | 7724  |
+|     **Non-strict features**      |   0   |    0    |   0   |     0     |         0          |     0     |         0          |   0   |   0   |    50    |   0    |    0     |    0     |   0   |   0   |   0   |   0   |   0    |   0    |     0      |    0     |   0    |   0    |     0     |  50   |
+|      **For unimplemented**       |   0   |    0    |  17   |    45     |         45         |    21     |         21         |   0   |   0   |    0     |   0    |    0     |    0     |   0   |  81   |   0   |   0   |   5    |   5    |     33     |    50    |  455   |  404   |     0     | 1182  |
+| **Using unimplemented features** |   3   |    0    |   0   |     0     |         0          |     0     |         0          |   0   |   0   |    3     |   0    |    0     |    0     |   0   |   0   |   0   |   0   |   0    |   0    |     0      |    0     |   0    |   6    |     0     |  12   |
+|             **ES6+**             |   0   |    0    |   0   |     0     |         0          |     0     |         0          |   0   |   0   |    0     |   0    |    0     |    0     |   0   |   0   |   0   |   0   |   0    |   2    |     0      |    0     |   0    |   0    |     0     |   2   |
+|          **Applicable**          | 2141  |   42    |  413  |     7     |         7          |     7     |         7          |  33   |   7   |   257    |   27   |    5     |    2     |   2   |   9   |  81   |   5   |  147   |  2878  |     7      |    7     |   46   |  336   |     5     | 6748  |
+|           **Passing**            | 2141  |   42    |  413  |     7     |         7          |     7     |         7          |  33   |   7   |   257    |   27   |    5     |    2     |   2   |   9   |  81   |   5   |  144   |  2878  |     7      |    7     |   46   |  336   |     5     | 6745  |
+|           **Failing**            |   0   |    0    |   0   |     0     |         0          |     0     |         0          |   0   |   0   |    0     |   0    |    0     |    0     |   0   |   0   |   0   |   0   |   3    |   0    |     0      |    0     |   0    |   0    |     0     |   3   |
