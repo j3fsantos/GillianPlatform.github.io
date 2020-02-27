@@ -17,22 +17,24 @@ var x = symb(x);
 Assume(not (typeOf x = Obj));
 
 var tx = typeof(x);
-`
+`;
 
-export default function () {
+export default function() {
   const [code, setCode] = useState(defaultText);
   const onChange = useCallback((_event, value) => {
     setCode(value);
   }, []);
 
-  return <Layout title="Try">
-    <div className={styles.main}>
-      <div>
-        <Code value={code} onChange={onChange} language="javascript" />
+  return (
+    <Layout title="Try">
+      <div className={styles.main}>
+        <div>
+          <Code value={code} onChange={onChange} language="javascript" />
+        </div>
+        <div>
+          <Output code={code} />
+        </div>
       </div>
-      <div>
-        <Output code={code}/>
-      </div>
-    </div>
-  </Layout>
+    </Layout>
+  );
 }

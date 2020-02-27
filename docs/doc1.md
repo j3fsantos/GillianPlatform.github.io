@@ -173,6 +173,7 @@ This line is also a separate paragraph, but... This line is only separated by a 
 
 ## Admonitions
 
+<!-- prettier-ignore-start -->
 :::note
 This is a note
 :::
@@ -192,3 +193,5 @@ This is a caution
 :::warning
 This is a warning
 :::
+
+<!-- prettier-ignore-end -->

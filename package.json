@@ -7,7 +7,9 @@
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
-    "test": "echo 'No tests written yet'"
+    "test": "echo 'No tests written yet'",
+    "prettier": "prettier --config .prettierrc --write \"**/*.{js,ts,tsx,md}\"",
+    "prettier:diff": "prettier --config .prettierrc --list-different \"**/*.{js,ts,tsx,md}\""
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-alpha.41",
@@ -16,6 +18,7 @@
     "@monaco-editor/react": "^3.1.0",
     "classnames": "^2.2.6",
     "monaco-editor": "^0.20.0",
+    "prettier": "^1.19.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-loading": "^2.0.3"

@@ -1,4 +1,4 @@
 ---
 id: cstest
-title: "Gillian-C: Symbolic Testing"
+title: 'Gillian-C: Symbolic Testing'
 ---

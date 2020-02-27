@@ -1,23 +1,29 @@
 ---
 id: structure
-title: "Gillian-JS: Folder Structure"
+title: 'Gillian-JS: Folder Structure'
 ---
+
+<!-- prettier-ignore-start -->
+:::info
+Folders marked with the (:x:PLDI20) annotation are out of scope of the PLDI 2020 Gillian Paper.
+:::
+<!-- prettier-ignore-end -->
 
 `Gillian-JS` can be found in the `Gillian-JS` folder of the repository. Its implementation consists of the following:
 
 - **Gillian-JS**
   - `bin`: The Gillian-JS binary
-  - `environment`: Execution environment, not part of the repository, created using `esy init:env`. All analyses are normally run from within this folder.
+  - `environment`: Execution environment, not part of the repository, created using `esy init:env`. It contains useful scripts for testing Gillian-JS, and examples are copied in it so that they can be safely modified.
   - `examples`: Various examples
-    - `Fantine`: Bi-abduction examples (out of scope)
+    - `Fantine`: Bi-abduction examples (:x:PLDI20)
     - `Cosette`: Symbolic testing examples
       - `buckets`: Tests for the Buckets.js library
       - `case_studies`: Data structures used for initial evaluation (not reported)
-    - `JaVerT`: Verification examples (out of scope)
+    - `JaVerT`: Verification examples (:x:PLDI20)
   - `lib`: The core of Gillian-JS
     - `compiler`: The JS-2-GIL compiler
     - `JSIL`: Syntax of JSIL and related constructs
-    - `JSLogic`: Verification-related constructs (assertions, predicates, specifications, etc.) (out of scope)
+    - `JSLogic`: Verification-related constructs (assertions, predicates, specifications, etc.) (:x:PLDI20)
     - `parsing`: JSIL parsing (programs, annotations, etc.)
     - `semantics`: Implementation of concrete and symbolic memory models
       - `CObject.ml`: Concrete objects
