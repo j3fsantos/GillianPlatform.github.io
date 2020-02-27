@@ -9,7 +9,7 @@
     "deploy": "docusaurus deploy",
     "test": "echo 'No tests written yet'",
     "prettier": "prettier --config .prettierrc --write \"**/*.{js,ts,tsx,md}\"",
-    "prettier:diff": "prettier --config .prettierrc --list-different \"**/*.{js,ts,tsx,md}\""
+    "prettier:diff": "prettier --config .prettierrc --list-different \"**/*.{js,ts,tsx}\""
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-alpha.41",
