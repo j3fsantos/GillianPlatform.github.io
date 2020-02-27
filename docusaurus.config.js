@@ -16,7 +16,7 @@ module.exports = {
       },
       links: [
         { to: 'docs/start', label: 'Docs', position: 'left' },
-        { to: 'api', label: 'API Reference', position: 'left' },
+        { to: 'apiref/', label: 'API Reference', position: 'left' },
         { to: 'docs/js/intro', label: 'Gillian-JS', position: 'left' },
         { to: 'docs/c/intro', label: 'Gillian-C', position: 'left' },
         { to: 'try', label: 'Try', position: 'right' },
