@@ -164,6 +164,7 @@ The docker container contains :
 
 - The Gillian repository in `/app/Gillian`
 - Our fork of `Test262` in `/app/test262`
+- our fork of `Collection-C` in `/app/collection-c`
 
 ## Testing your setup
 
