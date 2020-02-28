@@ -10,6 +10,9 @@ module.exports = {
   organizationName: 'GillianPlatform', // Usually your GitHub org/user name.
   projectName: 'GillianPlatform.github.io', // Usually your repo name.
   themeConfig: {
+    prism: {
+      theme: require('prism-react-renderer/themes/vsDark'),
+    },
     navbar: {
       logo: {
         alt: 'Gillian logo, by Valentin Magnat',
