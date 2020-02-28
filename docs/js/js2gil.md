@@ -5,7 +5,7 @@ title: JS-2-GIL and Test262
 
 ## Coverage of JS-2-GIL
 
-As mentioned earlier, the target version of JavaScript for JS-2-GIL is ECMAScript ES5 Strict. JS-2-GIL has broad coverage. It supports the entire core (chapters 8-14) except the `RegExp` literal and the majority of built-in libraries, except the following:
+JS-2-GIL is a compiler from ECMAScript ES5 Strict to GIL. JS-2-GIL has broad coverage. It supports the entire core (chapters 8-14), with the exception of the `RegExp` literal, as well as all of the JavaScript built-in libraries except the following:
 
 - `Date`, `RegExp`, `JSON`
 - `Number.prototype.toFixed`
@@ -13,15 +13,15 @@ As mentioned earlier, the target version of JavaScript for JS-2-GIL is ECMAScrip
 - `charCodeAt`, `localeCompare`, `match`, `replace`, `search`, `split`, `trim`, `toLocaleLowerCase`, `toLocaleUpperCase`, `toLowerCase`, `toUpperCase` (in `String.prototype`)
 - `decodeURI`, `decodeURIComponent`, `encodeURI`, `encodeURIComponent`, `parseInt`, `parseFloat` (in the global object)
 
-Additionally, indirect `eval` is not supported, as it is meant to be executed as non-strict code, and all `Function` constructor code is treated as strict-mode code.
+Additionally, indirect `eval` is not supported, as it is meant to be executed as non-strict code. Furthermore, all `Function` constructor code runs as strict-mode code.
 
 ## Correctness of JS-2-GIL
 
 The JS-2-GIL compiler can be split into two compilers: JS-2-JSIL, which compiles JavaScript to JSIL, the intermediate representation that we have used in [[JaVerT]](references.md#javert-javascript-verification-toolchain)/[\[Cosette\]](references.md#cosette-symbolic-execution-for-javascript)/[\[JaVerT 2.0\]](references.md#javert20-compositional-symbolic-execution-for-javascript); and JSIL-2-GIL, the compiler from JSIL to GIL, the intermediate representation of Gillian.
 
-Previously, we have tested the correctness of JS-2-JSIL using [this commit (from May 30th 2016)](https://github.com/tc39/test262/commit/91d06f) of the Test262 official test suite. As the target version of JavaScript for this commit was already ES6, it was necessary for us to identify the subset of tests appropriate for JS-2-JSIL, as explained in detail in [\[JaVerT\]](references.md#javert-javascript-verification-toolchain), arriving at 8797 applicable tests, of which JS-2-JSIL passes 100%.
+Previously, we have tested JS-2-JSIL against [this commit (from May 30th 2016)](https://github.com/tc39/test262/commit/91d06f) of Test262, the JavaScript official test suite. As this commit of Test262 targets ES6, we had to identify the subset of tests that are appropriate for JS-2-JSIL, as explained in detail in [\[JaVerT\]](references.md#javert-javascript-verification-toolchain), obtaining 8797 applicable tests, of which JS-2-JSIL passes 100%.
 
-We have initially tested JS-2-GIL successfully on the same 8797 tests and reported this in the submitted version of the paper. However, these tests were not systematically categorised and we were not able to automate the testing process to our satisfaction using the bulk testing mechanism of Gillian. For this reason, we have chosen to work with the latest version of Test262, forked [here](https://github.com/giltho/javert-test262), where each tests comes with a precise description of its intended outcome. For example, a test that is supposed to fail at parsing time with a JavaScript native syntax error will contain the following in its header:
+We have initially tested JS-2-GIL successfully on the same 8797 tests and reported this in the submitted version of the paper. However, these tests were not systematically categorised and we were not able to automate the testing process to our satisfaction using the bulk testing mechanism of Gillian. For this reason, we have chosen to work with the latest version of Test262, forked [here](https://github.com/giltho/javert-test262), where each test comes with a precise description of its intended outcome. For example, a test that is supposed to fail at parsing time with a JavaScript native syntax error will contain the following in its header:
 
 ```
 negative:
@@ -29,7 +29,7 @@ negative:
   type: SyntaxError
 ```
 
-We re-filter for the applicable tests and run them using JS-2-GIL and the concrete semantics of Gillian-JS. The summary results are presented in the table below and will be included in the final version of the paper. A more detailed, per-folder breakdown is available further below.
+We re-filter Test262 to find the applicable tests and run them using JS-2-GIL and the concrete semantics of Gillian-JS. The summary results are presented in the table below and will be included in the final version of the paper. A more detailed, per-folder breakdown is available further below.
 
 |                              | Language | Built-ins | Total |
 | :--------------------------: | :------: | :-------: | :---: |
@@ -76,11 +76,11 @@ The following eight tests
 - `test262/test/built-ins/Number/S9.3.1_A3_T2.js`
 - `test262/test/built-ins/Number/S9.3.1_A2.js`
 
-all fail due to a discrepancy between how Unicode characters are treated in JavaScript (either UCS-2 or UTF-16) and OCaml (sequences of bytes). One solution would be to move to strings provided by the [`Camomile`](http://camomile.sourceforge.net/) library instead of the native OCaml strings.
+fail due to a discrepancy between how Unicode characters are treated in JavaScript (either UCS-2 or UTF-16) and OCaml (sequences of bytes). One solution would be to move to strings provided by the [`Camomile`](http://camomile.sourceforge.net/) library instead of the native OCaml strings.
 
 ### Reproducing the Results
 
-1. Clone our [forked Test262 repository](https://github.com/giltho/javert-test262) to a folder on your machine. Inside that folder, the tests can be found in the `test` subfolder. In particular, `test/language` contains the core language tests, whereas `test/built-ins` contains the tests for the built-in libraries.
+1. Clone our [forked Test262 repository](https://github.com/giltho/javert-test262) to a folder on your machine. Inside that folder, you can find the Test262 tests in the `test` subfolder. In particular, `test/language` contains the core language tests, whereas `test/built-ins` contains the tests for the built-in libraries.
 2. To run all of the tests, execute the following command inside your Gillian folder:
 
 ```bash
@@ -88,7 +88,7 @@ esy
 esy x javert bulk-exec [relative path to your Test262 folder]/test
 ```
 
-For example, we normally clone Test262 to at the same level as Gillian and change the folder name from `javert-test262` to `test262`. Therefore, we run all of the tests by executing the following starting from the `Gillian` folder:
+For example, we normally clone Test262 in the same folder as the Gillian project and change its folder name from `javert-test262` to `test262`. We then run all of the tests by executing the following commands from within the `Gillian` folder:
 
 ```bash
 cd ..
@@ -106,7 +106,7 @@ The testing should take approximately thirty minutes. The bulk tester will activ
 esy x javert bulk-exec ../test262/test/built-ins/Array/prototype/reduce/
 ```
 
-4. If you would like to examine the filtered tests, you can find them, as described above, listed in the [`test262_filtering.ml`](https://github.com/giltho/GillianDev/blob/master/Gillian-JS/lib/test262/test262_filtering.ml) file.
+4. If you would like to examine the filtered tests, you can find them in [`test262_filtering.ml`](https://github.com/giltho/GillianDev/blob/master/Gillian-JS/lib/test262/test262_filtering.ml).
 
 ### Detailed Per-Folder Breakdown: Language
 
