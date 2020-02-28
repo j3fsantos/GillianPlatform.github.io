@@ -18,7 +18,7 @@ The Gillian development repository contains :
 
 ## What type of installation should I chose ?
 
-Gillian **should** work on most Linux and macOS machine, and cannot be installed on Windows machines for now. We do not have a large range of different machines to test it on, so there might also be compatibility issues with some Linux or old versions of macOS. We primarily tested on :
+Gillian **should** work on most Linux and macOS machines, and cannot be installed on Windows machines for now. We do not have a large range of different machines to test it on, so there might also be compatibility issues with some Linux or old versions of macOS. We primarily tested on :
 
 - macOS Catalina - x86_64
 - Ubuntu 18.04.4 LTS - x86_64
@@ -31,7 +31,7 @@ If the installation does not work on your machine, or if you are running Windows
 
 ### Sandboxing
 
-We make use of [esy](https://esy.sh) for dependency management, which sandboxes the dependencies. Apart from the very few external dependencies (including esy), installing Gillian's dependency **will not** affect any current environment you have (including your opam switches) and it should therefore be perfectly safe to install the development environment directly on your machine.
+We make use of [esy](https://esy.sh) for dependency management, which sandboxes the dependencies. Apart from the very few external dependencies (including esy), installing Gillian's dependencies **will not** affect any current environment you have (including your opam switches) and it should therefore be perfectly safe to install the development environment directly on your machine.
 
 ### External dependencies
 
@@ -107,11 +107,11 @@ We explain how to get the docker container up and ready for development inside a
 
 ### Getting the docker image
 
-There are two ways of getting the docker image with the development environment : building it yourself of pulling it from the docker hub.
+There are two ways of getting the docker image with the development environment : building it yourself or pulling it from the docker hub.
 
 <!-- prettier-ignore-start -->
 :::info
-If you are evaluating Gillian as an artifact, please build the image yourself from the provided repository, or pull the docker image with the tag associated to the artifact.
+If you are evaluating Gillian as an artifact, please build the image yourself from the provided repository, or pull the docker image with the tag associated with the artifact.
 :::
 <!-- prettier-ignore-end -->
 
@@ -162,7 +162,7 @@ The docker container contains :
 
 ## Testing your setup
 
-Once the project is built on your machine, or that you are inside the docker container, try running:
+Once the project is built on your machine, or once you are inside the docker container, try running:
 
 ```bash
 esy x gillian-js verify Gillian-JS/Examples/JaVerT/BST.js --silent
