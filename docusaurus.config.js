@@ -1,3 +1,6 @@
+const remarkMath = require('remark-math');
+const rehypeKatex = require('rehype-katex');
+
 module.exports = {
   title: 'Gillian',
   tagline: 'Compositional Symbolic Analysis for All',
@@ -6,7 +9,6 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'GillianPlatform', // Usually your GitHub org/user name.
   projectName: 'GillianPlatform.github.io', // Usually your repo name.
-  scripts: ['/scripts/fetchCosette.js'],
   themeConfig: {
     navbar: {
       logo: {
@@ -65,6 +67,7 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Gillian Team. Gillian and WISL logos by Valentin Magnat. Built with Docusaurus.`,
     },
   },
+  scripts: ['/scripts/fetchCosette.js'],
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -73,6 +76,8 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
             'https://github.com/GillianPlatform/GillianPlatform.github.io/edit/source/',
+          remarkPlugins: [remarkMath],
+          rehypePlugins: [rehypeKatex],
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

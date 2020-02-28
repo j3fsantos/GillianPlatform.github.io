@@ -21,7 +21,9 @@
     "prettier": "^1.19.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-loading": "^2.0.3"
+    "react-loading": "^2.0.3",
+    "rehype-katex": "^2.0.0",
+    "remark-math": "^2.0.0"
   },
   "browserslist": {
     "production": [

@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
 
 export default ({ publi }) => {
-  console.log(publi);
-  
+
   return (
     <Fragment>
-      <h2>{publi.title}</h2>
       <h3>Authors</h3>
       <ul>
-        { publi.authors.map(x => <li key={x}>{x}</li>) }
+        {publi.authors.map(x => (
+          <li key={x}>{x}</li>
+        ))}
       </ul>
       <h3 sidebar_label="Abstract">Abstract</h3>
       <p>{publi.abstract}</p>
@@ -18,8 +18,12 @@ export default ({ publi }) => {
       <p>{publi.date}</p>
       <h3>Identifiers</h3>
       <ul>
-        { Object.entries(publi.identifiers).map(([k, {name, link}]) => <li key={k}>{k}:<a href={link}>{name}</a></li>)}
+        {Object.entries(publi.identifiers).map(([k, { name, link }]) => (
+          <li key={k}>
+            {k}:<a href={link}>{name}</a>
+          </li>
+        ))}
       </ul>
     </Fragment>
-  )
-}
+  );
+};

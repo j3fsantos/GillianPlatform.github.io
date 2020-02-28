@@ -20,5 +20,15 @@ module.exports = {
         items: ['c/intro', 'c/structure', 'c/cstest'],
       },
     ],
+    Publications: [
+      {
+        type: 'category',
+        label: 'PLDI 2020 - Gillian, Part I',
+        items: [
+          'publications/pldi20/pldi20-ref',
+          'publications/pldi20/pldi20-diff',
+        ],
+      },
+    ],
   },
 };
