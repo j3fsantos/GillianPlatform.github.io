@@ -152,12 +152,6 @@ docker run -it gillian
 
 This will start the container and give you access through a `zsh` shell.
 
-<!-- prettier-ignore-start -->
-:::warning
-The docker container is not persistent and does not mount any persistent volume. Once you exit the container, all changes will be lost.
-:::
-<!-- prettier-ignore-end -->
-
 ### What it contains
 
 The docker container contains :
