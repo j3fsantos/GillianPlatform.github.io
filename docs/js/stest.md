@@ -5,11 +5,11 @@ title: 'Gillian-JS: Symbolic Testing'
 
 ## Writing Symbolic Tests
 
-The whole-program symbolic testing aspect of Gillian-JS (codenamed Cosette) extends JavaScript with a mechanism for declaring symbolic variables and performing first-order reasoning on them.
+The whole-program symbolic testing module of Gillian-JS (codenamed Cosette) extends JavaScript with a mechanism for declaring symbolic variables and performing first-order reasoning on them.
 
 ### Declaring Symbolic Variables
 
-One can declare untyped symbolic variables, symbolic booleans, symbolic string, and symbolic numbers as follows:
+One can declare untyped symbolic variables, symbolic booleans, symbolic strings, and symbolic numbers as follows:
 
 ```javascript
 var x = symb(x); // Untyped symbolic variable
@@ -46,7 +46,7 @@ E ::=
   | E ++ E | s-len E | s-nth E  // String concat, length, and n-th
 ```
 
-Here is an example symbolic test using assumptions and assertions:
+Here is the example of a symbolic test using assumptions and assertions:
 
 ```javascript
 // Create two symbolic numbers
@@ -83,7 +83,7 @@ which means that the assertion does not hold if `n1 = 0` and `n2 = 1`. Here, var
 
 ### Semantics of Operators
 
-Importantly, the semantics of all of the operators is deliberately **NOT** as in JavaScript. For example, the comparison and numeric operators do not perform any coercions. If you would, for example, like to reason using the JavaScript `<=`, you can write the following:
+Importantly, the semantics of all of the operators is deliberately **NOT** as in JavaScript. For example, comparison and numeric operators do not perform any implicit type coercions. If you want to use JavaScript comparison/numeric operators, say `<=`, you can proceed as follows:
 
 ```javascript
 var res_leq_n1 = n1 <= res;
@@ -108,7 +108,7 @@ We symbolically test Buckets.js, a real-world JavaScript data-structure library,
 
 - The name of the folder being tested, which also indicates the data structure in question
 - The number of tests required for 100% line coverage
-- The total number of GIL commands executed during these tests
+- The total number of GIL commands executed by running these tests
 - The total testing time (in seconds)
 
 ### Testing Results
@@ -152,7 +152,7 @@ In order to obtain the number of executed commands, append the `count` parameter
 ./testCosetteFolder.sh Examples/Cosette/Buckets/queue count
 ```
 
-**Note**: The times obtained when counting executed commands will be slower, due to the fact that the tests will be run single-threaded.
+**Note**: The times obtained when counting executed commands will be slower, due to the fact that the tests will be run in single-thread mode.
 
 ### Detailed Per-Folder Breakdown: Buckets.js
 
