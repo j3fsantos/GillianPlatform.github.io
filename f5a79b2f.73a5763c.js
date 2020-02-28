@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[26],{152:function(e,n,t){"use strict";t.r(n);var c=t(0),a=t.n(c),r=t(166);t(163);n.default=function(){return a.a.createElement(r.a,{title:"API"},a.a.createElement("div",null,"To access the API reference doc, ",a.a.createElement("a",{href:"./index.html"},"click here"),"."))}}}]);

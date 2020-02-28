@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[13],{140:function(e,t,a){"use strict";a.r(t);var n=a(0),c=a.n(n),r=a(166);a(163);t.default=function(){return c.a.createElement(r.a,{title:"API"},c.a.createElement("div",null,"To access the API reference doc, ",c.a.createElement("a",{href:"gillianplatform.github.io/apiref"},"click here"),"."))}}}]);
